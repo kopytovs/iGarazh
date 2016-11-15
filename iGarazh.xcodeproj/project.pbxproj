@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		933011DE1DDB4A96005C2A71 /* GenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933011DD1DDB4A96005C2A71 /* GenViewController.swift */; };
+		933011E31DDB56A5005C2A71 /* iGarazh.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 933011E11DDB56A5005C2A71 /* iGarazh.xcdatamodeld */; };
+		933011E51DDB726A005C2A71 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933011E41DDB726A005C2A71 /* SettingsViewController.swift */; };
+		933011E71DDB8F4E005C2A71 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933011E61DDB8F4E005C2A71 /* TableViewController.swift */; };
 		939921111DA4DF800043B058 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939921101DA4DF800043B058 /* AppDelegate.swift */; };
 		939921131DA4DF800043B058 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939921121DA4DF800043B058 /* FirstViewController.swift */; };
 		939921151DA4DF800043B058 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939921141DA4DF800043B058 /* SecondViewController.swift */; };
@@ -18,6 +21,9 @@
 
 /* Begin PBXFileReference section */
 		933011DD1DDB4A96005C2A71 /* GenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenViewController.swift; sourceTree = "<group>"; };
+		933011E21DDB56A5005C2A71 /* iGarazh.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = iGarazh.xcdatamodel; sourceTree = "<group>"; };
+		933011E41DDB726A005C2A71 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		933011E61DDB8F4E005C2A71 /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		9399210D1DA4DF800043B058 /* iGarazh.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iGarazh.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		939921101DA4DF800043B058 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		939921121DA4DF800043B058 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
@@ -62,10 +68,13 @@
 				939921121DA4DF800043B058 /* FirstViewController.swift */,
 				939921141DA4DF800043B058 /* SecondViewController.swift */,
 				933011DD1DDB4A96005C2A71 /* GenViewController.swift */,
+				933011E41DDB726A005C2A71 /* SettingsViewController.swift */,
+				933011E61DDB8F4E005C2A71 /* TableViewController.swift */,
 				939921161DA4DF800043B058 /* Main.storyboard */,
 				939921261DA4E33D0043B058 /* Assets.xcassets */,
 				9399211B1DA4DF800043B058 /* LaunchScreen.storyboard */,
 				9399211E1DA4DF800043B058 /* Info.plist */,
+				933011E11DDB56A5005C2A71 /* iGarazh.xcdatamodeld */,
 			);
 			path = iGarazh;
 			sourceTree = "<group>";
@@ -97,7 +106,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0730;
+				LastUpgradeCheck = 0810;
 				ORGANIZATIONNAME = "Sergey Kopytov";
 				TargetAttributes = {
 					9399210C1DA4DF800043B058 = {
@@ -145,7 +154,10 @@
 			files = (
 				939921151DA4DF800043B058 /* SecondViewController.swift in Sources */,
 				939921111DA4DF800043B058 /* AppDelegate.swift in Sources */,
+				933011E51DDB726A005C2A71 /* SettingsViewController.swift in Sources */,
+				933011E71DDB8F4E005C2A71 /* TableViewController.swift in Sources */,
 				939921131DA4DF800043B058 /* FirstViewController.swift in Sources */,
+				933011E31DDB56A5005C2A71 /* iGarazh.xcdatamodeld in Sources */,
 				933011DE1DDB4A96005C2A71 /* GenViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -186,8 +198,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -231,8 +245,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -251,6 +267,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -262,6 +279,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = iGarazh/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = KopytovSD.iGarazh;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -277,6 +295,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = iGarazh/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = KopytovSD.iGarazh;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -307,6 +326,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		933011E11DDB56A5005C2A71 /* iGarazh.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				933011E21DDB56A5005C2A71 /* iGarazh.xcdatamodel */,
+			);
+			currentVersion = 933011E21DDB56A5005C2A71 /* iGarazh.xcdatamodel */;
+			path = iGarazh.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 939921051DA4DF800043B058 /* Project object */;
 }

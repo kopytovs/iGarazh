@@ -44,8 +44,13 @@ class GenViewController: UIViewController {
     @IBAction func genQR(_ sender: Any) {
         
         QRImage.image = nil
+        if (!(QRText.text?.isEmpty)!){
+            
+            QRImage.image = generateQRCode(from: QRText.text!)
+            
+        }
         
-        QRImage.image = generateQRCode(from: QRText.text!)
+        view.endEditing(true)
         
     }
     
