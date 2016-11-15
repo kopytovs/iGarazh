@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		933011DE1DDB4A96005C2A71 /* GenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933011DD1DDB4A96005C2A71 /* GenViewController.swift */; };
 		939921111DA4DF800043B058 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939921101DA4DF800043B058 /* AppDelegate.swift */; };
 		939921131DA4DF800043B058 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939921121DA4DF800043B058 /* FirstViewController.swift */; };
 		939921151DA4DF800043B058 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939921141DA4DF800043B058 /* SecondViewController.swift */; };
@@ -16,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		933011DD1DDB4A96005C2A71 /* GenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenViewController.swift; sourceTree = "<group>"; };
 		9399210D1DA4DF800043B058 /* iGarazh.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iGarazh.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		939921101DA4DF800043B058 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		939921121DA4DF800043B058 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
@@ -59,6 +61,7 @@
 				939921101DA4DF800043B058 /* AppDelegate.swift */,
 				939921121DA4DF800043B058 /* FirstViewController.swift */,
 				939921141DA4DF800043B058 /* SecondViewController.swift */,
+				933011DD1DDB4A96005C2A71 /* GenViewController.swift */,
 				939921161DA4DF800043B058 /* Main.storyboard */,
 				939921261DA4E33D0043B058 /* Assets.xcassets */,
 				9399211B1DA4DF800043B058 /* LaunchScreen.storyboard */,
@@ -143,6 +146,7 @@
 				939921151DA4DF800043B058 /* SecondViewController.swift in Sources */,
 				939921111DA4DF800043B058 /* AppDelegate.swift in Sources */,
 				939921131DA4DF800043B058 /* FirstViewController.swift in Sources */,
+				933011DE1DDB4A96005C2A71 /* GenViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
