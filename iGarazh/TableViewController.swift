@@ -12,8 +12,6 @@ import CoreData
 class TableViewController: UITableViewController {
     
     var mas = [Place]()
-    
-    //let mase = ["oh", "my", "god"]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,7 +22,7 @@ class TableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         self.navigationItem.leftBarButtonItem = self.editButtonItem
         
-        self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
+        //self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
         
         tableView.delegate = self
         tableView.dataSource = self
@@ -64,13 +62,15 @@ class TableViewController: UITableViewController {
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
 
         // Configure the cell...
-        
-        cell.textLabel?.text = mas[indexPath.row].item! as String
-        //cell.textLabel?.text = mase[indexPath.row] as String
 
+        cell.textLabel?.text = mas[indexPath.row].item! as String
+        
+        cell.detailTextLabel?.text = mas[indexPath.row].info! as String
+        
         return cell
     }
  
@@ -82,6 +82,10 @@ class TableViewController: UITableViewController {
         
         var nameTextField: UITextField?
         
+        var secTextField: UITextField?
+        
+        var infoTextField: UITextField?
+        
         let alertController = UIAlertController(title: "Добавление предмета", message: nil, preferredStyle: .alert)
         
         let add = UIAlertAction(title: "Добавить", style: .default, handler: { (action) -> Void in
@@ -89,6 +93,10 @@ class TableViewController: UITableViewController {
             let fields = alertController.textFields!
             
             place.item = fields[0].text!
+            
+            place.number = fields[1].text!
+            
+            place.info = fields[2].text!
             
             self.mas.append(place)
             
@@ -105,9 +113,25 @@ class TableViewController: UITableViewController {
         alertController.addTextField(configurationHandler: { (textField) -> Void in
         
             nameTextField = textField
-            nameTextField?.placeholder = "Введите наименование"
+            nameTextField?.placeholder = "Наименование"
+            //nameTextField?.keyboardType
             
         })
+        alertController.addTextField(configurationHandler: { (textField) -> Void in
+            
+            secTextField = textField
+            secTextField?.placeholder = "Шкаф"
+            
+            
+        })
+        
+        alertController.addTextField(configurationHandler: { (textField) -> Void in
+            
+            infoTextField = textField
+            infoTextField?.placeholder = "Описание (Например номер полки)"
+            
+        })
+        
         
         present(alertController, animated: true, completion: nil)
         
