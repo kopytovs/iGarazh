@@ -9,10 +9,19 @@
 import UIKit
 import CoreData
 
-class TableViewController: UITableViewController {
+class TableViewController: UITableViewController, UISearchBarDelegate {
     
     var mas = [Place]()
 
+    @IBOutlet weak var SBar: UISearchBar!
+    
+    var filtered = [Place]()
+    
+    var SActive: Bool = false
+    
+    var temp: String = ""
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -24,8 +33,15 @@ class TableViewController: UITableViewController {
         
         //self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
         
+        SBar.delegate = self
+        
+        temp = SBar.text!
+        
+        SBar.showsCancelButton = false
+        
         tableView.delegate = self
         tableView.dataSource = self
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -47,6 +63,10 @@ class TableViewController: UITableViewController {
             print ("Fetching error")
         }
     }
+    
+    func dismissKeyboard(){
+        view.endEditing(true)
+    }
 
     // MARK: - Table view data source
 
@@ -57,7 +77,13 @@ class TableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return mas.count
+        if (SActive){
+            return filtered.count
+        }
+        else {
+            return mas.count
+        }
+        
     }
 
     
@@ -67,9 +93,9 @@ class TableViewController: UITableViewController {
 
         // Configure the cell...
 
-        cell.textLabel?.text = mas[indexPath.row].item! as String
+        cell.textLabel?.text = (SActive && !filtered.isEmpty) ? filtered[indexPath.row].item! as String : mas[indexPath.row].item! as String
         
-        cell.detailTextLabel?.text = mas[indexPath.row].info! as String
+        cell.detailTextLabel?.text = (SActive && !filtered.isEmpty) ? filtered[indexPath.row].info! as String : mas[indexPath.row].info! as String
         
         return cell
     }
@@ -92,17 +118,33 @@ class TableViewController: UITableViewController {
         
             let fields = alertController.textFields!
             
-            place.item = fields[0].text!
-            
-            place.number = fields[1].text!
-            
-            place.info = fields[2].text!
-            
-            self.mas.append(place)
-            
-            self.tableView.reloadData()
-            
-            (UIApplication.shared.delegate as! AppDelegate).saveContext()
+            if ((fields[0].text?.isEmpty)! || (fields[1].text?.isEmpty)!){
+                
+                /*let errorC = UIAlertController(title: "Ошибка!", message: "Введите все данные!", preferredStyle: .alert)
+                
+                let okay = UIAlertAction(title: "ОК", style: .default, handler: {(alert) -> Void in})
+                
+                errorC.addAction(okay)
+                
+                present(errorC, animated: true, completion: nil)*/
+                
+                print ("Пустые поля!")
+                
+                
+            } else{
+                
+                place.item = fields[0].text!
+                
+                place.number = fields[1].text!
+                
+                place.info = fields[2].text!
+                
+                self.mas.append(place)
+                
+                self.tableView.reloadData()
+                
+                (UIApplication.shared.delegate as! AppDelegate).saveContext()
+            }
         
         })
         
@@ -146,6 +188,55 @@ class TableViewController: UITableViewController {
         return true
     }
     */
+    
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        self.navigationItem.leftBarButtonItem?.isEnabled = false
+        self.navigationItem.rightBarButtonItem?.isEnabled = false
+        searchBar.showsCancelButton = true
+        SActive = true
+    }
+    
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        //self.navigationItem.leftBarButtonItem?.isEnabled = true
+        SActive = false
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.text = temp
+        searchBar.showsCancelButton = false
+        self.navigationItem.leftBarButtonItem?.isEnabled = true
+        self.navigationItem.rightBarButtonItem?.isEnabled = true
+        self.view.endEditing(true)
+        SActive = false
+        tableView.reloadData()
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        self.view.endEditing(true)
+        //self.navigationItem.leftBarButtonItem?.isEnabled = true
+        searchBar.showsCancelButton = true
+        SActive = true
+    }
+    
+    
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        
+        filtered = mas.filter({ (text) -> Bool in
+            let tmp: String = text.item! as String
+            let range = tmp.range(of: searchText, options: String.CompareOptions.caseInsensitive)
+            //let range = tmp.rangeO(searchText, options: String.CompareOptions.CaseInsensitive)
+            return range != nil
+        })
+        
+        if(filtered.isEmpty){
+            SActive = false;
+        } else {
+            SActive = true;
+        }
+        
+        self.tableView.reloadData()
+    }
 
     
     // Override to support editing the table view.

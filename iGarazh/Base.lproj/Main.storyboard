@@ -286,9 +286,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <searchBar key="tableHeaderView" contentMode="redraw" placeholder="Поиск по вещичкам" id="Z4x-bb-csP">
+                            <rect key="frame" x="0.0" y="64" width="320" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </searchBar>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" editingAccessoryType="disclosureIndicator" textLabel="Ym3-aO-9nx" detailTextLabel="3Ox-9J-k0m" style="IBUITableViewCellStyleSubtitle" id="CXa-uM-OxZ">
-                                <rect key="frame" x="0.0" y="28" width="320" height="59"/>
+                                <rect key="frame" x="0.0" y="72" width="320" height="59"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="CXa-uM-OxZ" id="pvM-ZD-ELj">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="58"/>
@@ -324,6 +329,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="SBar" destination="Z4x-bb-csP" id="IZk-MZ-cgW"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MFv-Om-xIl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
