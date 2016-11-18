@@ -21,6 +21,8 @@ class TableViewController: UITableViewController, UISearchBarDelegate {
     
     var temp: String = ""
     
+    var load: Bool = true
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,8 +52,11 @@ class TableViewController: UITableViewController, UISearchBarDelegate {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        getData()
-        tableView.reloadData()
+        if (load){
+            getData()
+            tableView.reloadData()
+            load = false
+        }
     }
     
     func getData() {
@@ -138,6 +143,8 @@ class TableViewController: UITableViewController, UISearchBarDelegate {
                 place.number = fields[1].text!
                 
                 place.info = fields[2].text!
+                
+                place.qr = "\(self.mas.count+1)"
                 
                 self.mas.append(place)
                 
@@ -262,7 +269,30 @@ class TableViewController: UITableViewController, UISearchBarDelegate {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }    
     }
+    
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        
+        cell.alpha = 0
+        
+        UIView.animate(withDuration: 1.0, animations: {cell.alpha = 1})
+        
+    }
  
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destinationViewController.
+        // Pass the selected object to the new view controller.
+        
+        //if segue.identifier == "showDetail"{
+        
+        if let indexPath = tableView.indexPathForSelectedRow {
+            let destinationController = segue.destination as! QRGenViewController
+            //destinationController.name = ((SActive) && !(filtered.isEmpty)) ? filtered[indexPath]. : mas
+            destinationController.name = ((SActive) && !(filtered.isEmpty)) ? filtered[indexPath.row].qr! : mas[indexPath.row].qr!
+            //destinationController.name = mas
+            //}
+            
+        }
+    }
 
     /*
     // Override to support rearranging the table view.

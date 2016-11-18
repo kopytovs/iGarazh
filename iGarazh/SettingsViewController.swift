@@ -13,6 +13,7 @@ class SettingsViewController: UIViewController, MFMailComposeViewControllerDeleg
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
 
         // Do any additional setup after loading the view.
     }
@@ -34,6 +35,7 @@ class SettingsViewController: UIViewController, MFMailComposeViewControllerDeleg
             let mail = MFMailComposeViewController()
             mail.mailComposeDelegate = self
             mail.setToRecipients(["kopytov@me.com"])
+            mail.setSubject("Приложение iGarazh")
             mail.setMessageBody("<p>Приветствую команду разработчиков!</p>", isHTML: true)
             
             present(mail, animated: true)

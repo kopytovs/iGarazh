@@ -7,6 +7,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -292,11 +293,11 @@
                             <textInputTraits key="textInputTraits"/>
                         </searchBar>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" editingAccessoryType="disclosureIndicator" textLabel="Ym3-aO-9nx" detailTextLabel="3Ox-9J-k0m" style="IBUITableViewCellStyleSubtitle" id="CXa-uM-OxZ">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="Cell" textLabel="Ym3-aO-9nx" detailTextLabel="3Ox-9J-k0m" style="IBUITableViewCellStyleSubtitle" id="CXa-uM-OxZ">
                                 <rect key="frame" x="0.0" y="72" width="320" height="59"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="CXa-uM-OxZ" id="pvM-ZD-ELj">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="58"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="287" height="58"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Ym3-aO-9nx">
@@ -315,6 +316,9 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="63l-FG-bgc" kind="show" id="kqU-2v-4O9"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -336,6 +340,57 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MFv-Om-xIl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2193.75" y="-933.80281690140851"/>
+        </scene>
+        <!--Gen View Controller-->
+        <scene sceneID="Qoi-cd-Evs">
+            <objects>
+                <viewController id="63l-FG-bgc" customClass="QRGenViewController" customModule="iGarazh" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Yna-lQ-hKC"/>
+                        <viewControllerLayoutGuide type="bottom" id="eap-Ub-HuW"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="nyU-Jc-J9H">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Cji-lG-f3G">
+                                <rect key="frame" x="40" y="122" width="240" height="240"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="Cji-lG-f3G" secondAttribute="height" multiplier="1:1" id="f14-Vs-hYQ"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YEr-a4-0YA">
+                                <rect key="frame" x="100" y="409" width="121" height="63"/>
+                                <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="63" id="Ag2-Jp-eBv"/>
+                                </constraints>
+                                <state key="normal" title="Сохранить">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="Saving:" destination="63l-FG-bgc" eventType="touchUpInside" id="f65-OZ-za9"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="YEr-a4-0YA" firstAttribute="top" secondItem="Cji-lG-f3G" secondAttribute="bottom" constant="47" id="1GC-tu-Vtr"/>
+                            <constraint firstItem="Cji-lG-f3G" firstAttribute="top" secondItem="Yna-lQ-hKC" secondAttribute="bottom" constant="58" id="G3m-yb-Oms"/>
+                            <constraint firstItem="YEr-a4-0YA" firstAttribute="leading" secondItem="nyU-Jc-J9H" secondAttribute="leadingMargin" constant="84" id="KTm-A5-n1A"/>
+                            <constraint firstItem="Cji-lG-f3G" firstAttribute="leading" secondItem="nyU-Jc-J9H" secondAttribute="leadingMargin" constant="24" id="aCg-2w-HQ6"/>
+                            <constraint firstItem="Cji-lG-f3G" firstAttribute="centerX" secondItem="nyU-Jc-J9H" secondAttribute="centerX" id="cDV-cA-IGx"/>
+                            <constraint firstItem="Cji-lG-f3G" firstAttribute="centerX" secondItem="YEr-a4-0YA" secondAttribute="centerX" id="eMq-b2-WxQ"/>
+                            <constraint firstItem="eap-Ub-HuW" firstAttribute="top" secondItem="YEr-a4-0YA" secondAttribute="bottom" constant="47" id="rFx-pX-DFF"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="QRImage" destination="Cji-lG-f3G" id="NxO-Uu-DnB"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hnS-Vt-syI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3172.5" y="-934.85915492957747"/>
         </scene>
         <!--Настройки-->
         <scene sceneID="K94-7n-P8s">

@@ -17,6 +17,7 @@
 		939921181DA4DF800043B058 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 939921161DA4DF800043B058 /* Main.storyboard */; };
 		9399211D1DA4DF800043B058 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9399211B1DA4DF800043B058 /* LaunchScreen.storyboard */; };
 		939921271DA4E33D0043B058 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 939921261DA4E33D0043B058 /* Assets.xcassets */; };
+		93D2612B1DDC566500F8C8DA /* QRGenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D2612A1DDC566500F8C8DA /* QRGenViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		9399211C1DA4DF800043B058 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9399211E1DA4DF800043B058 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		939921261DA4E33D0043B058 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		93D2612A1DDC566500F8C8DA /* QRGenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRGenViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +72,7 @@
 				933011DD1DDB4A96005C2A71 /* GenViewController.swift */,
 				933011E41DDB726A005C2A71 /* SettingsViewController.swift */,
 				933011E61DDB8F4E005C2A71 /* TableViewController.swift */,
+				93D2612A1DDC566500F8C8DA /* QRGenViewController.swift */,
 				939921161DA4DF800043B058 /* Main.storyboard */,
 				939921261DA4E33D0043B058 /* Assets.xcassets */,
 				9399211B1DA4DF800043B058 /* LaunchScreen.storyboard */,
@@ -152,6 +155,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				93D2612B1DDC566500F8C8DA /* QRGenViewController.swift in Sources */,
 				939921151DA4DF800043B058 /* SecondViewController.swift in Sources */,
 				939921111DA4DF800043B058 /* AppDelegate.swift in Sources */,
 				933011E51DDB726A005C2A71 /* SettingsViewController.swift in Sources */,
@@ -285,6 +289,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -301,6 +306,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

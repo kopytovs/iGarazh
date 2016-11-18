@@ -4,8 +4,9 @@
         <attribute name="info" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="item" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="number" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="qr" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Place" positionX="-63" positionY="-18" width="128" height="90"/>
+        <element name="Place" positionX="-63" positionY="-18" width="128" height="103"/>
     </elements>
 </model>
