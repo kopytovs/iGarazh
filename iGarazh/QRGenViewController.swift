@@ -8,8 +8,9 @@
 
 import UIKit
 import Photos
+import MessageUI
 
-class QRGenViewController: UIViewController{
+class QRGenViewController: UIViewController, MFMailComposeViewControllerDelegate{
 
     @IBOutlet weak var QRImage: UIImageView!
     
@@ -64,7 +65,7 @@ class QRGenViewController: UIViewController{
         
         var image: UIImage = QRImage.image!
         
-        image = image.resizeWith(width: 100)!
+        image = image.resizeWith(width: 1000)!
         
         UIImageWriteToSavedPhotosAlbum(image, self, #selector(image(_:didFinishSavingWithError:contextInfo:)), nil)
         
@@ -91,7 +92,6 @@ class QRGenViewController: UIViewController{
             present(ac, animated: true)
         }
     }
-    
     
     
     /*func image (image: image, didFinishSavingWithError: error, contextInfo: contextInfo){
