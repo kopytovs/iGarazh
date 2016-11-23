@@ -10,7 +10,13 @@ import UIKit
 
 class MyPlaceTableViewController: UITableViewController, UISearchBarDelegate {
     
+    var defmas = [Place]()
+    
     var mas = [Place]()
+    
+    var tabs = [Scafs]()
+    
+    var nameS: String = ""
     
     var scaf: String = ""
     
@@ -37,13 +43,13 @@ class MyPlaceTableViewController: UITableViewController, UISearchBarDelegate {
         
         temp = SBar.text!
         
-        print("Шкаф под номером |\(scaf)|")
+        //print("Шкаф под номером |\(scaf)|")
         
-        SBar.placeholder = "Поиск по шкафу №\(scaf)"
+        SBar.placeholder = "Поиск по шкафу"
         
         SBar.showsCancelButton = false
         
-        self.navigationItem.title = "Шкаф №\(scaf)"
+        self.navigationItem.title = "Шкаф"
         
         tableView.delegate = self
         tableView.dataSource = self
@@ -54,28 +60,108 @@ class MyPlaceTableViewController: UITableViewController, UISearchBarDelegate {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        do {
+            defmas = try context.fetch(Place.fetchRequest())
+            tabs = try context.fetch(Scafs.fetchRequest())
+        }
+        catch {
+            print ("Fetching error")
+        }
+        
+        var have = false
+        if self.tabs.isEmpty{
+            let alertC = UIAlertController(title: "Ошибка", message: "Не найден шкаф!!!", preferredStyle: .alert)
+            
+            let OK = UIAlertAction(title: "OK", style: .default, handler: {(alert) -> Void in})
+            
+            alertC.addAction(OK)
+            
+            present(alertC, animated: true, completion: {(alert) -> Void in})
+            
+        } else{
+            if tabs.count == 1 {
+                if tabs[0].id == scaf {
+                    have = true
+                }
+            } else {
+        for i in 0...tabs.count {
+            if tabs[i].id == scaf {
+                have = true
+                //scaf = tabs[i].name!
+                break
+            }
+            }
+            }
+        }
+        
+        if have {
+            
+            if defmas.count == 1 {
+                
+                if defmas[0].qr == scaf {
+                    mas.append(defmas[0])
+                }
+                
+            } else{
+            
+            for i in 0...defmas.count{
+                if defmas[i].qr == scaf {
+                    mas.append(defmas[i])
+                }
+            }
+            }
+            
+        } else{
+            
+            let alertC = UIAlertController(title: "Ошибка!", message: "Не найден шкаф!!!", preferredStyle: .alert)
+            let ok = UIAlertAction(title: "OK", style: .default, handler: {(alert) -> Void in})
+            
+            alertC.addAction(ok)
+            
+            present(alertC, animated: true, completion: nil)
+            
+        }
+        
+    }
 
     // MARK: - Table view data source
 
-    override func numberOfSections(in tableView: UITableView) -> Int {
+    /*override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 0
-    }
+    }*/
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        if mas.isEmpty {
+            return 0
+        } else{
+            //print (mas.count)
+            return mas.count
+        }
     }
 
-    /*
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
 
         // Configure the cell...
+        
+        if mas.isEmpty {
+            
+        } else{
+        
+            cell.textLabel?.text = (SActive && !filtered.isEmpty) ? filtered[indexPath.row].item! as String : mas[indexPath.row].item! as String
+        
+            cell.detailTextLabel?.text = (SActive && !filtered.isEmpty) ? filtered[indexPath.row].info! as String : mas[indexPath.row].info! as String
+        }
 
         return cell
     }
-    */
+ 
 
     /*
     // Override to support conditional editing of the table view.

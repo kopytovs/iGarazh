@@ -11,7 +11,7 @@ import AVFoundation
 
 class SecondViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
     
-    @IBOutlet weak var infoLabel: UILabel!
+    //@IBOutlet weak var infoLabel: UILabel!
     
     var qrCodeFrameView: UIView?
     var captureSession: AVCaptureSession?
@@ -56,7 +56,7 @@ class SecondViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
             
             //optional for label
             //------------------
-            view.bringSubview(toFront: infoLabel)
+            //view.bringSubview(toFront: infoLabel)
             
             if let qrCodeFrameView = qrCodeFrameView {
                 
@@ -86,7 +86,8 @@ class SecondViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
         
         if metadataObjects == nil || metadataObjects.count == 0 {
             qrCodeFrameView?.frame = CGRect.zero
-            infoLabel.text = "QR код не распознан!"
+            //infoLabel.text = "QR код не распознан!"
+            
             
             return
         }
@@ -98,7 +99,7 @@ class SecondViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
         qrCodeFrameView?.frame = (barCodeObject?.bounds)!
         
         if metadataObj.stringValue != nil {
-            infoLabel.text = metadataObj.stringValue
+            //infoLabel.text = metadataObj.stringValue
             name = metadataObj.stringValue
             performSegue(withIdentifier: "TrueSegue", sender: self)
             

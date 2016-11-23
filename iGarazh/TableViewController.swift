@@ -12,6 +12,8 @@ import CoreData
 class TableViewController: UITableViewController, UISearchBarDelegate {
     
     var mas = [Place]()
+    
+    var tabs = [Scafs]()
 
     @IBOutlet weak var SBar: UISearchBar!
     
@@ -63,6 +65,7 @@ class TableViewController: UITableViewController, UISearchBarDelegate {
         let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         do {
             mas = try context.fetch(Place.fetchRequest())
+            tabs = try context.fetch(Scafs.fetchRequest())
         }
         catch {
             print ("Fetching error")
@@ -111,6 +114,8 @@ class TableViewController: UITableViewController, UISearchBarDelegate {
         
         let place = Place(context: context)
         
+        let tab = Scafs(context: context)
+        
         var nameTextField: UITextField?
         
         var secTextField: UITextField?
@@ -144,7 +149,43 @@ class TableViewController: UITableViewController, UISearchBarDelegate {
                 
                 place.info = fields[2].text!
                 
-                place.qr = "\(self.mas.count+1)"
+                if self.tabs.isEmpty {
+                    tab.name = fields[1].text!
+                    
+                    let tempID = NSUUID().uuidString
+                    
+                    tab.id = "\(tempID)"
+                    
+                    place.qr = "\(tempID)"
+                    
+                    self.tabs.append(tab)
+                    
+                } else{
+                    
+                    var have = false
+                    
+                    for i in 0...self.tabs.count{
+                        if (self.tabs[i].name == fields[1].text!){
+                            have = true
+                            place.qr = self.tabs[i].id
+                        }
+                    }
+                    
+                    if !(have) {
+                        tab.name = fields[1].text!
+                        
+                        let tempID = NSUUID().uuidString
+                        
+                        tab.id = "\(tempID)"
+                        
+                        place.qr = "\(tempID)"
+                        
+                        self.tabs.append(tab)
+                    }
+                    
+                }
+                
+                //place.qr = "\(self.mas.count+1)"
                 
                 self.mas.append(place)
                 
