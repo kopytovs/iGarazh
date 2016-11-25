@@ -87,7 +87,7 @@ class MyPlaceTableViewController: UITableViewController, UISearchBarDelegate {
                     have = true
                 }
             } else {
-        for i in 0...tabs.count {
+        for i in 0...tabs.count-1 {
             if tabs[i].id == scaf {
                 have = true
                 //scaf = tabs[i].name!
@@ -107,7 +107,7 @@ class MyPlaceTableViewController: UITableViewController, UISearchBarDelegate {
                 
             } else{
             
-            for i in 0...defmas.count{
+            for i in 0...defmas.count-1{
                 if defmas[i].qr == scaf {
                     mas.append(defmas[i])
                 }

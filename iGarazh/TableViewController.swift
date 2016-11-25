@@ -141,6 +141,8 @@ class TableViewController: UITableViewController, UISearchBarDelegate {
                 print ("Пустые поля!")
                 
                 
+                
+                
             } else{
                 
                 place.item = fields[0].text!
@@ -158,18 +160,28 @@ class TableViewController: UITableViewController, UISearchBarDelegate {
                     
                     place.qr = "\(tempID)"
                     
+                    tab.items = 1
+                    
                     self.tabs.append(tab)
                     
                 } else{
                     
                     var have = false
                     
-                    for i in 0...self.tabs.count{
-                        if (self.tabs[i].name == fields[1].text!){
+                    if self.tabs.count == 1{
+                        if (self.tabs[0].name == fields[1].text!){
                             have = true
+                            place.qr = self.tabs[0].id
+                            self.tabs[0].items += 1
+                    } else{
+                            for i in 0...self.tabs.count-1{
+                            if (self.tabs[i].name == fields[1].text!){
+                            have = true
+                            self.tabs[0].items += 1
                             place.qr = self.tabs[i].id
+                                }
+                            }
                         }
-                    }
                     
                     if !(have) {
                         tab.name = fields[1].text!
@@ -192,6 +204,7 @@ class TableViewController: UITableViewController, UISearchBarDelegate {
                 self.tableView.reloadData()
                 
                 (UIApplication.shared.delegate as! AppDelegate).saveContext()
+            }
             }
         
         })
@@ -222,6 +235,15 @@ class TableViewController: UITableViewController, UISearchBarDelegate {
             
         })
         
+        if !(nameTextField?.text?.isEmpty)! && !(secTextField?.text?.isEmpty)!{
+            
+            add.isEnabled = true
+            
+        } else{
+            
+            //add.isEnabled = false
+            
+        }
         
         present(alertController, animated: true, completion: nil)
         
@@ -295,6 +317,26 @@ class TableViewController: UITableViewController, UISearchBarDelegate {
         if editingStyle == .delete {
             // Delete the row from the data source
             let place = mas[indexPath.row]
+            var tab = Scafs(context: context)
+            var index = 0
+            
+            if tabs.count == 1 {
+                tab = tabs[0]
+            } else {
+                for i in 0...tabs.count-1 {
+                    if self.tabs[i].id == place.qr{
+                        tab = tabs[i]
+                        index = i
+                        break
+                    }
+                }
+            }
+            
+            if tab.items == 1 {
+                context.delete(tab)
+            } else{
+                tabs[index].items -= 1
+            }
             context.delete(place)
             (UIApplication.shared.delegate as! AppDelegate).saveContext()
             
