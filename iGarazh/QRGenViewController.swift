@@ -14,12 +14,22 @@ class QRGenViewController: UIViewController, MFMailComposeViewControllerDelegate
 
     @IBOutlet weak var QRImage: UIImageView!
     
+    @IBOutlet weak var item: UILabel!
+    @IBOutlet weak var scaf: UILabel!
+    @IBOutlet weak var descript: UILabel!
+    
+    var fields = ["lol", "lol", "lol"]
+    
     var name: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         QRImage.isUserInteractionEnabled = true
+        
+        item.text = fields[0]
+        scaf.text = fields[1]
+        descript.text = fields[2]
         
         //QRImage.image = nil
         

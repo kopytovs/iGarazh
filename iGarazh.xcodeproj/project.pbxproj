@@ -114,7 +114,7 @@
 				TargetAttributes = {
 					9399210C1DA4DF800043B058 = {
 						CreatedOnToolsVersion = 7.3;
-						DevelopmentTeam = FVVTZS9Y96;
+						DevelopmentTeam = D6EK8XP63P;
 						LastSwiftMigration = 0800;
 					};
 				};
@@ -282,6 +282,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = D6EK8XP63P;
 				INFOPLIST_FILE = iGarazh/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -299,6 +300,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = D6EK8XP63P;
 				INFOPLIST_FILE = iGarazh/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

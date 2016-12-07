@@ -140,9 +140,6 @@ class TableViewController: UITableViewController, UISearchBarDelegate {
                 
                 print ("Пустые поля!")
                 
-                
-                
-                
             } else{
                 
                 place.item = fields[0].text!
@@ -173,12 +170,13 @@ class TableViewController: UITableViewController, UISearchBarDelegate {
                             have = true
                             place.qr = self.tabs[0].id
                             self.tabs[0].items += 1
+                        }
                     } else{
                             for i in 0...self.tabs.count-1{
-                            if (self.tabs[i].name == fields[1].text!){
-                            have = true
-                            self.tabs[0].items += 1
-                            place.qr = self.tabs[i].id
+                                if (self.tabs[i].name == fields[1].text!){
+                                    have = true
+                                    self.tabs[0].items += 1
+                                    place.qr = self.tabs[i].id
                                 }
                             }
                         }
@@ -204,7 +202,7 @@ class TableViewController: UITableViewController, UISearchBarDelegate {
                 self.tableView.reloadData()
                 
                 (UIApplication.shared.delegate as! AppDelegate).saveContext()
-            }
+            
             }
         
         })
@@ -370,7 +368,18 @@ class TableViewController: UITableViewController, UISearchBarDelegate {
         if let indexPath = tableView.indexPathForSelectedRow {
             let destinationController = segue.destination as! QRGenViewController
             //destinationController.name = ((SActive) && !(filtered.isEmpty)) ? filtered[indexPath]. : mas
+            //print ("гребаный нейм |\(mas[indexPath.row].qr)|")
+            //print ("suka:   |\(((SActive) && !(filtered.isEmpty)) ? filtered[indexPath.row].qr! : mas[indexPath.row].qr!)|")
+            //print ("chert:   |\(mas[indexPath.row].qr!)|")
             destinationController.name = ((SActive) && !(filtered.isEmpty)) ? filtered[indexPath.row].qr! : mas[indexPath.row].qr!
+            //print ("chert:   |\(mas[indexPath.row].item)|")
+            destinationController.fields[0] = ((SActive) && !(filtered.isEmpty)) ? "Имя:   " + filtered[indexPath.row].item! : "Имя:   " + mas[indexPath.row].item!
+            destinationController.fields[1] = ((SActive) && !(filtered.isEmpty)) ? "Шкаф:   " + filtered[indexPath.row].number! : "Шкаф:   " + mas[indexPath.row].number!
+            destinationController.fields[2] = ((SActive) && !(filtered.isEmpty)) ? "Описание:   " + filtered[indexPath.row].info! : "Описание:   " + mas[indexPath.row].info!
+            //print ("ololo:   |\(destinationController.item.text)|")
+            //print ("ololo:   |\(destinationController.scaf.text)|")
+            //print ("ololo:   |\(destinationController.descript.text)|")
+            print ("The end is near!")
             //destinationController.name = mas
             //}
             

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="49e-Tb-3d3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11761" systemVersion="16C60b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="49e-Tb-3d3">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -305,7 +305,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <searchBar key="tableHeaderView" contentMode="redraw" placeholder="Поиск по вещичкам" id="Z4x-bb-csP">
-                            <rect key="frame" x="0.0" y="64" width="320" height="44"/>
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <textInputTraits key="textInputTraits"/>
                         </searchBar>
@@ -371,16 +371,16 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Cji-lG-f3G">
-                                <rect key="frame" x="40" y="122" width="240" height="240"/>
+                                <rect key="frame" x="110" y="332" width="100" height="100"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="Cji-lG-f3G" secondAttribute="height" multiplier="1:1" id="f14-Vs-hYQ"/>
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YEr-a4-0YA">
-                                <rect key="frame" x="100" y="409" width="121" height="63"/>
+                                <rect key="frame" x="109" y="449" width="102" height="36"/>
                                 <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="63" id="Ag2-Jp-eBv"/>
+                                    <constraint firstAttribute="height" constant="36" id="Ag2-Jp-eBv"/>
                                 </constraints>
                                 <state key="normal" title="Сохранить">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -389,20 +389,51 @@
                                     <action selector="Saving:" destination="63l-FG-bgc" eventType="touchUpInside" id="f65-OZ-za9"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nws-Um-UKw">
+                                <rect key="frame" x="16" y="88" width="288" height="45"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i3m-Qt-PIw">
+                                <rect key="frame" x="16" y="147" width="288" height="45"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0To-qN-UEI">
+                                <rect key="frame" x="16" y="211" width="288" height="45"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="QR код для распонавания шкафа" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="btI-lB-sDT">
+                                <rect key="frame" x="40" y="303" width="264" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="YEr-a4-0YA" firstAttribute="top" secondItem="Cji-lG-f3G" secondAttribute="bottom" constant="47" id="1GC-tu-Vtr"/>
-                            <constraint firstItem="Cji-lG-f3G" firstAttribute="top" secondItem="Yna-lQ-hKC" secondAttribute="bottom" constant="58" id="G3m-yb-Oms"/>
-                            <constraint firstItem="YEr-a4-0YA" firstAttribute="leading" secondItem="nyU-Jc-J9H" secondAttribute="leadingMargin" constant="84" id="KTm-A5-n1A"/>
-                            <constraint firstItem="Cji-lG-f3G" firstAttribute="leading" secondItem="nyU-Jc-J9H" secondAttribute="leadingMargin" constant="24" id="aCg-2w-HQ6"/>
+                            <constraint firstItem="YEr-a4-0YA" firstAttribute="top" secondItem="Cji-lG-f3G" secondAttribute="bottom" constant="17" id="1GC-tu-Vtr"/>
+                            <constraint firstItem="Cji-lG-f3G" firstAttribute="top" secondItem="Yna-lQ-hKC" secondAttribute="bottom" constant="268" id="G3m-yb-Oms"/>
+                            <constraint firstItem="YEr-a4-0YA" firstAttribute="leading" secondItem="nyU-Jc-J9H" secondAttribute="leadingMargin" constant="93" id="KTm-A5-n1A"/>
+                            <constraint firstItem="Cji-lG-f3G" firstAttribute="leading" secondItem="nyU-Jc-J9H" secondAttribute="leadingMargin" constant="94" id="aCg-2w-HQ6"/>
                             <constraint firstItem="Cji-lG-f3G" firstAttribute="centerX" secondItem="nyU-Jc-J9H" secondAttribute="centerX" id="cDV-cA-IGx"/>
                             <constraint firstItem="Cji-lG-f3G" firstAttribute="centerX" secondItem="YEr-a4-0YA" secondAttribute="centerX" id="eMq-b2-WxQ"/>
-                            <constraint firstItem="eap-Ub-HuW" firstAttribute="top" secondItem="YEr-a4-0YA" secondAttribute="bottom" constant="47" id="rFx-pX-DFF"/>
+                            <constraint firstItem="eap-Ub-HuW" firstAttribute="top" secondItem="YEr-a4-0YA" secondAttribute="bottom" constant="34" id="rFx-pX-DFF"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="QRImage" destination="Cji-lG-f3G" id="NxO-Uu-DnB"/>
+                        <outlet property="descript" destination="0To-qN-UEI" id="jNf-Nd-GSC"/>
+                        <outlet property="item" destination="nws-Um-UKw" id="sN3-g7-uzx"/>
+                        <outlet property="scaf" destination="i3m-Qt-PIw" id="J5E-9a-005"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hnS-Vt-syI" userLabel="First Responder" sceneMemberID="firstResponder"/>
