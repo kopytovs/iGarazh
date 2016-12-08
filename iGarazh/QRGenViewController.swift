@@ -25,6 +25,8 @@ class QRGenViewController: UIViewController, MFMailComposeViewControllerDelegate
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.view.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "backgr2"))
+        
         QRImage.isUserInteractionEnabled = true
         
         item.text = fields[0]

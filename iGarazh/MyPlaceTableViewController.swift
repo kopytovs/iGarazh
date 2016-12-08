@@ -39,6 +39,8 @@ class MyPlaceTableViewController: UITableViewController, UISearchBarDelegate {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
+        self.view.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "backgr"))
+        
         SBar.delegate = self
         
         temp = SBar.text!
@@ -161,6 +163,16 @@ class MyPlaceTableViewController: UITableViewController, UISearchBarDelegate {
 
         return cell
     }
+    
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        
+        cell.backgroundColor = .clear
+        
+        cell.alpha = 0
+        
+        UIView.animate(withDuration: 1.0, animations: {cell.alpha = 1})
+        
+    }
  
 
     /*
@@ -198,14 +210,35 @@ class MyPlaceTableViewController: UITableViewController, UISearchBarDelegate {
     }
     */
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        
+        if let indexPath = tableView.indexPathForSelectedRow {
+            let destinationController = segue.destination as! QRDescription
+            //destinationController.name = ((SActive) && !(filtered.isEmpty)) ? filtered[indexPath]. : mas
+            //print ("гребаный нейм |\(mas[indexPath.row].qr)|")
+            //print ("suka:   |\(((SActive) && !(filtered.isEmpty)) ? filtered[indexPath.row].qr! : mas[indexPath.row].qr!)|")
+            //print ("chert:   |\(mas[indexPath.row].qr!)|")
+            //print ("chert:   |\(mas[indexPath.row].item)|")
+            destinationController.fields[0] = ((SActive) && !(filtered.isEmpty)) ? "Имя:   " + filtered[indexPath.row].item! : "Имя:   " + mas[indexPath.row].item!
+            destinationController.fields[1] = ((SActive) && !(filtered.isEmpty)) ? "Шкаф:   " + filtered[indexPath.row].number! : "Шкаф:   " + mas[indexPath.row].number!
+            destinationController.fields[2] = ((SActive) && !(filtered.isEmpty)) ? "Описание:   " + filtered[indexPath.row].info! : "Описание:   " + mas[indexPath.row].info!
+            //print ("ololo:   |\(destinationController.item.text)|")
+            //print ("ololo:   |\(destinationController.scaf.text)|")
+            //print ("ololo:   |\(destinationController.descript.text)|")
+            print ("The end is near!")
+            //destinationController.name = mas
+            //}
+            
+        }
+        
+        
     }
-    */
+ 
 
 }

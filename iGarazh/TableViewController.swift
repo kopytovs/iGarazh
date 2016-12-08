@@ -37,6 +37,8 @@ class TableViewController: UITableViewController, UISearchBarDelegate {
         
         //self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
         
+        self.view.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "backgr"))
+        
         SBar.delegate = self
         
         temp = SBar.text!
@@ -353,6 +355,8 @@ class TableViewController: UITableViewController, UISearchBarDelegate {
     
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         
+        cell.backgroundColor = .clear
+        
         cell.alpha = 0
         
         UIView.animate(withDuration: 1.0, animations: {cell.alpha = 1})
@@ -385,6 +389,7 @@ class TableViewController: UITableViewController, UISearchBarDelegate {
             
         }
     }
+    
 
     /*
     // Override to support rearranging the table view.

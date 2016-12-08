@@ -14,6 +14,7 @@ class SettingsViewController: UIViewController, MFMailComposeViewControllerDeleg
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.view.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "backgr"))
 
         // Do any additional setup after loading the view.
     }
@@ -29,6 +30,18 @@ class SettingsViewController: UIViewController, MFMailComposeViewControllerDeleg
         
     }
     
+
+    @IBAction func help(_ sender: Any) {
+        
+        let alert = UIAlertController(title: "Помощь", message: "Дружелюбное приложение, которое не даст Вашему динозавру потеряться!", preferredStyle: .alert)
+        
+        let ok = UIAlertAction(title: "Спасибо!", style: .default, handler: nil)
+        
+        alert.addAction(ok)
+        
+        present(alert, animated: true, completion: nil)
+        
+    }
     
     func sendEmail() {
         if MFMailComposeViewController.canSendMail() {
