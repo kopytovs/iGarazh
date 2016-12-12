@@ -34,11 +34,11 @@ class ScafsTableViewController: UITableViewController {
     }
 
     override func viewWillAppear(_ animated: Bool) {
-        //if (load){
+        if (load){
             getData()
             tableView.reloadData()
             load = false
-        //}
+        }
         
         if Tabs.count == 1{
 
@@ -46,16 +46,15 @@ class ScafsTableViewController: UITableViewController {
                 scafs.append(Tabs[0])
             }
             
-        } else {
+        } else if Tabs.count > 1{
             
             for i in 0...Tabs.count - 1 {
                 if Tabs[i].name != nil {
                     scafs.append(Tabs[i])
                 }
             }
-            
         }
-        
+        print ("itogo:  \(scafs.count)")
     }
     
     func getData() {

@@ -181,6 +181,7 @@ class TableViewController: UITableViewController, UISearchBarDelegate {
                                     have = true
                                     self.tabs[i].items += 1
                                     place.qr = self.tabs[i].id
+                                    break
                                 }
                             }
                         }
@@ -213,7 +214,7 @@ class TableViewController: UITableViewController, UISearchBarDelegate {
         
         })
         
-        let cancel = UIAlertAction(title: "Отменить", style: .default, handler: { (action) -> Void in})
+        let cancel = UIAlertAction(title: "Отменить", style: .cancel, handler: { (action) -> Void in})
         
         alertController.addAction(cancel)
         alertController.addAction(add)
@@ -311,10 +312,200 @@ class TableViewController: UITableViewController, UISearchBarDelegate {
         
         self.tableView.reloadData()
     }
+    
+    
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        if SActive {
+            return false
+        } else {
+            return true
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        
+        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        
+        let editButt = UITableViewRowAction(style: .normal, title: "Edit") { action, index in
+            print("edit button tapped")
+            
+            var nameTextField: UITextField?
+            
+            var secTextField: UITextField?
+            
+            var infoTextField: UITextField?
+            
+            let alert = UIAlertController(title: "Изменение ячейки", message: nil, preferredStyle: .alert)
+            
+            let ok = UIAlertAction(title: "OK", style: .default, handler: {(action) -> Void in
+            
+                let fields = alert.textFields!
+                
+                if !(fields[0].text?.isEmpty)! {
+                    
+                    self.mas[indexPath.row].item = fields[0].text
+                    
+                }
+                
+                if !(fields[1].text?.isEmpty)!{
+                    
+                    for i in 0...self.tabs.count-1 {
+                        if self.tabs[i].name == self.mas[indexPath.row].number {
+                            if self.tabs[i].items == 1 {
+                                
+                                let tab = self.tabs[i]
+                                
+                                context.delete(tab)
+                                
+                                self.tabs.remove(at: i)
+                                
+                            } else {
+                                //print ("end:  \(self.tabs[i].items)")
+                                self.tabs[i].items -= 1
+                            }
+                            break
+                        }
+                    }
+                    
+                    self.mas[indexPath.row].number = fields[1].text
+                    
+                    var have = true
+                    
+                    for i in 0...self.tabs.count-1 {
+                        if self.tabs[i].name == fields[1].text {
+                            have = false
+                            self.mas[indexPath.row].qr = self.tabs[i].id
+                            self.tabs[i].items += 1
+                            break
+                        }
+                    }
+                    
+                    if have {
+                        
+                        let tab = Scafs(context: context)
+                        
+                        tab.items = 1
+                        
+                        tab.name = fields[1].text
+                        
+                        let uid = NSUUID().uuidString
+                        
+                        tab.id = ("\(uid)")
+                        
+                        self.mas[indexPath.row].qr = tab.id
+                        
+                        self.tabs.append(tab)
+                        
+                    }
+                }
+                
+                if !(fields[2].text?.isEmpty)! {
+                    
+                    self.mas[indexPath.row].info = fields[2].text
+                    
+                }
+                
+                self.tableView.reloadData()
+                
+                (UIApplication.shared.delegate as! AppDelegate).saveContext()
+                
+                do {
+                    
+                    self.mas = try context.fetch(Place.fetchRequest())
+                    self.tabs = try context.fetch(Scafs.fetchRequest())
+                    
+                } catch {
+                    print ("Fetching error")
+                }
+                
+            })
+            
+            let cancel = UIAlertAction(title: "Отменить", style: .cancel, handler: nil)
+            
+            alert.addAction(ok)
+            alert.addAction(cancel)
+            
+            alert.addTextField(configurationHandler: {(textField) -> Void in
+                
+                nameTextField = textField
+                
+                nameTextField?.placeholder = "Наименование"
+                
+            })
+            
+            alert.addTextField(configurationHandler: {(textField) -> Void in
+                
+                secTextField = textField
+                
+                secTextField?.placeholder = "Шкаф"
+                
+            })
+            
+            alert.addTextField(configurationHandler: {(textField) -> Void in
+                
+                infoTextField = textField
+                
+                infoTextField?.placeholder = " Описание"
+                
+            })
+            
+            self.present(alert, animated: true, completion: nil)
+        }
+        
+        editButt.backgroundColor = UIColor.orange
+        
+        let deleteButt = UITableViewRowAction(style: .normal, title: "Delete") { action, index in
+            print("delete button tapped")
+            
+            //let alert = UIAlertController(title: "Изменение ячейки", message: nil, preferredStyle: .alert)
+            // Delete the row from the data source
+            let place = self.mas[indexPath.row]
+            var tab = Scafs(context: context)
+            var index = 0
+            
+            if self.tabs.count == 1 {
+                tab = self.tabs[0]
+            } else {
+                for i in 0...self.tabs.count-1 {
+                    if self.tabs[i].id == place.qr{
+                        tab = self.tabs[i]
+                        index = i
+                        break
+                    }
+                }
+            }
+            //здесь ошибка 😔
+            if tab.items == 1 {
+                context.delete(tab)
+                self.tabs.remove(at: index)
+            } else{
+                self.tabs[index].items -= 1
+            }
+            
+            
+            context.delete(place)
+            (UIApplication.shared.delegate as! AppDelegate).saveContext()
+            
+            do {
+                self.mas = try context.fetch(Place.fetchRequest())
+                self.tabs = try context.fetch(Scafs.fetchRequest())
+            }
+            catch {
+                print ("Fetching error")
+            }
+            
+            tableView.deleteRows(at: [indexPath], with: .fade)
+        }
+        
+        deleteButt.backgroundColor = UIColor.red
+        
+        return [deleteButt, editButt]
+        
+    }
 
     
     // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+    /*override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         
         let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         
@@ -359,8 +550,8 @@ class TableViewController: UITableViewController, UISearchBarDelegate {
             tableView.deleteRows(at: [indexPath], with: .fade)
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
+        }
+    }*/
     
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         
