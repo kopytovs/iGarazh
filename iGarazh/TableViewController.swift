@@ -342,6 +342,7 @@ class TableViewController: UITableViewController, UISearchBarDelegate {
             
             do {
                 mas = try context.fetch(Place.fetchRequest())
+                tabs = try context.fetch(Scafs.fetchRequest())
             }
             catch {
                 print ("Fetching error")
