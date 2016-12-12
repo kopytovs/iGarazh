@@ -23,7 +23,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5TY-N9-s4R">
-                                <rect key="frame" x="121" y="137" width="77" height="126"/>
+                                <rect key="frame" x="121" y="59" width="77" height="126"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="77" id="vbh-ea-vPj"/>
                                 </constraints>
@@ -32,20 +32,36 @@
                                     <segue destination="W6I-3Z-i1f" kind="show" id="fLb-if-f8p"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Распознать шкаф" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rmc-T6-kwh">
-                                <rect key="frame" x="89" y="353" width="141" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Распознать QR код" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rmc-T6-kwh">
+                                <rect key="frame" x="90" y="193" width="153" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ne5-eO-zfd">
+                                <rect key="frame" x="49" y="397" width="222" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="Mbk-2s-KN0"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="27"/>
+                                <state key="normal" title="Выбрать шкаф">
+                                    <color key="titleColor" red="0.18191751932703829" green="0.48616708123259444" blue="0.80415212563451777" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <segue destination="7gm-Y4-e5h" kind="show" id="dUp-4H-5j3"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="Rmc-T6-kwh" firstAttribute="top" secondItem="5TY-N9-s4R" secondAttribute="bottom" constant="90" id="AUG-hm-i6U"/>
-                            <constraint firstItem="Djb-ko-YwX" firstAttribute="top" secondItem="Rmc-T6-kwh" secondAttribute="bottom" constant="145" id="Vtr-kl-jmC"/>
+                            <constraint firstItem="Djb-ko-YwX" firstAttribute="top" secondItem="Ne5-eO-zfd" secondAttribute="bottom" constant="92" id="3Dm-MB-rPn"/>
+                            <constraint firstItem="Rmc-T6-kwh" firstAttribute="top" secondItem="5TY-N9-s4R" secondAttribute="bottom" constant="8" id="AUG-hm-i6U"/>
+                            <constraint firstItem="Ne5-eO-zfd" firstAttribute="centerX" secondItem="5TY-N9-s4R" secondAttribute="centerX" id="MOJ-uC-TlD"/>
+                            <constraint firstItem="Djb-ko-YwX" firstAttribute="top" secondItem="Rmc-T6-kwh" secondAttribute="bottom" constant="305" id="Vtr-kl-jmC"/>
+                            <constraint firstItem="Ne5-eO-zfd" firstAttribute="leading" secondItem="QS5-Rx-YEW" secondAttribute="leadingMargin" constant="33" id="hyt-nG-Fnz"/>
                             <constraint firstItem="5TY-N9-s4R" firstAttribute="centerX" secondItem="QS5-Rx-YEW" secondAttribute="centerX" id="iVt-g0-W1i"/>
-                            <constraint firstItem="5TY-N9-s4R" firstAttribute="top" secondItem="L7p-HK-0SC" secondAttribute="bottom" constant="117" id="jZv-Ml-k16"/>
-                            <constraint firstItem="5TY-N9-s4R" firstAttribute="centerX" secondItem="Rmc-T6-kwh" secondAttribute="centerX" id="mrC-8r-TXz"/>
+                            <constraint firstItem="5TY-N9-s4R" firstAttribute="top" secondItem="L7p-HK-0SC" secondAttribute="bottom" constant="39" id="jZv-Ml-k16"/>
+                            <constraint firstItem="5TY-N9-s4R" firstAttribute="centerX" secondItem="Rmc-T6-kwh" secondAttribute="centerX" constant="-7" id="mrC-8r-TXz"/>
                         </constraints>
                         <variation key="default">
                             <mask key="subviews">
@@ -86,14 +102,54 @@
             </objects>
             <point key="canvasLocation" x="3540" y="313.73239436619718"/>
         </scene>
+        <!--Scafs Table View Controller-->
+        <scene sceneID="5zF-wq-LWI">
+            <objects>
+                <tableViewController id="7gm-Y4-e5h" customClass="ScafsTableViewController" customModule="iGarazh" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="SVn-9h-RA8">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="Cell" textLabel="xgJ-ii-ZZs" style="IBUITableViewCellStyleDefault" id="lVM-ao-tvz">
+                                <rect key="frame" x="0.0" y="28" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="lVM-ao-tvz" id="rG5-LJ-FM7">
+                                    <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="xgJ-ii-ZZs">
+                                            <rect key="frame" x="15" y="0.0" width="270" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="Mbx-AR-1v4" kind="show" id="sdA-m6-nEq"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="7gm-Y4-e5h" id="Dp4-zs-zmT"/>
+                            <outlet property="delegate" destination="7gm-Y4-e5h" id="05L-bS-k5Q"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oNl-3Y-fRC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3359" y="1087"/>
+        </scene>
         <!--My Place Table View Controller-->
         <scene sceneID="Zrd-OQ-PuC">
             <objects>
                 <tableViewController storyboardIdentifier="SID" id="Mbx-AR-1v4" customClass="MyPlaceTableViewController" customModule="iGarazh" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="HmL-c7-7Qw">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="HmL-c7-7Qw">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <searchBar key="tableHeaderView" contentMode="redraw" id="MRf-Av-CCn">
                             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
@@ -102,7 +158,7 @@
                         </searchBar>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" textLabel="g6c-bL-amt" detailTextLabel="a24-oR-IqT" style="IBUITableViewCellStyleSubtitle" id="sNF-HA-jkn">
-                                <rect key="frame" x="0.0" y="72" width="320" height="44"/>
+                                <rect key="frame" x="0.0" y="100" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="sNF-HA-jkn" id="gLd-hH-mn7">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -515,4 +571,7 @@
         <image name="second" width="32" height="32"/>
         <image name="third" width="32" height="32"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="sdA-m6-nEq"/>
+    </inferredMetricsTieBreakers>
 </document>

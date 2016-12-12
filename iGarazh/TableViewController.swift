@@ -61,6 +61,8 @@ class TableViewController: UITableViewController, UISearchBarDelegate {
             tableView.reloadData()
             load = false
         }
+        print ("kolvo:  \(tabs.count)")
+
     }
     
     func getData() {
@@ -80,10 +82,10 @@ class TableViewController: UITableViewController, UISearchBarDelegate {
 
     // MARK: - Table view data source
 
-    /*override func numberOfSections(in tableView: UITableView) -> Int {
+    //override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
-    }*/
+   //     return tabs.count
+   // }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
@@ -177,7 +179,7 @@ class TableViewController: UITableViewController, UISearchBarDelegate {
                             for i in 0...self.tabs.count-1{
                                 if (self.tabs[i].name == fields[1].text!){
                                     have = true
-                                    self.tabs[0].items += 1
+                                    self.tabs[i].items += 1
                                     place.qr = self.tabs[i].id
                                 }
                             }
@@ -187,6 +189,8 @@ class TableViewController: UITableViewController, UISearchBarDelegate {
                         tab.name = fields[1].text!
                         
                         let tempID = NSUUID().uuidString
+                        
+                        tab.items = 1
                         
                         tab.id = "\(tempID)"
                         
@@ -314,6 +318,7 @@ class TableViewController: UITableViewController, UISearchBarDelegate {
         
         let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         
+        
         if editingStyle == .delete {
             // Delete the row from the data source
             let place = mas[indexPath.row]
@@ -331,12 +336,15 @@ class TableViewController: UITableViewController, UISearchBarDelegate {
                     }
                 }
             }
-            
+            //здесь ошибка 😔
             if tab.items == 1 {
                 context.delete(tab)
+                tabs.remove(at: index)
             } else{
                 tabs[index].items -= 1
             }
+            
+            
             context.delete(place)
             (UIApplication.shared.delegate as! AppDelegate).saveContext()
             
@@ -363,6 +371,10 @@ class TableViewController: UITableViewController, UISearchBarDelegate {
         UIView.animate(withDuration: 1.0, animations: {cell.alpha = 1})
         
     }
+    
+   // override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        
+   // }
  
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
@@ -384,7 +396,7 @@ class TableViewController: UITableViewController, UISearchBarDelegate {
             //print ("ololo:   |\(destinationController.item.text)|")
             //print ("ololo:   |\(destinationController.scaf.text)|")
             //print ("ololo:   |\(destinationController.descript.text)|")
-            print ("The end is near!")
+            //print ("The end is near!")
             //destinationController.name = mas
             //}
             
