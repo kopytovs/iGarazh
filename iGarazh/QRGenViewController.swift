@@ -27,6 +27,8 @@ class QRGenViewController: UIViewController, MFMailComposeViewControllerDelegate
         
         self.view.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "backgr2"))
         
+        QRImage.isHidden = true
+        
         QRImage.isUserInteractionEnabled = true
         
         item.text = fields[0]
@@ -79,7 +81,14 @@ class QRGenViewController: UIViewController, MFMailComposeViewControllerDelegate
         
         image = image.resizeWith(width: 1000)!
         
-        UIImageWriteToSavedPhotosAlbum(image, self, #selector(image(_:didFinishSavingWithError:contextInfo:)), nil)
+        let activityViewController = UIActivityViewController(activityItems: [image], applicationActivities: nil)
+        activityViewController.popoverPresentationController?.sourceView = self.view
+        present(activityViewController, animated: true, completion: nil)
+        //activityViewController.excludedActivityTypes = [UIActivityType.airDrop, UIActivityType.copyToPasteboard, UIActivityType.mail, UIActivityType.message, UIActivityType.saveToCameraRoll, UIActivityType.postToFacebook, UIActivityType.postToTwitter]
+        
+        
+        
+        /*UIImageWriteToSavedPhotosAlbum(image, self, #selector(image(_:didFinishSavingWithError:contextInfo:)), nil)
         
         let saved = UIAlertController(title: "Успешно!", message: "Ваше изображение успешно сохранено в фотопленку", preferredStyle: .alert)
         
@@ -87,7 +96,7 @@ class QRGenViewController: UIViewController, MFMailComposeViewControllerDelegate
         
         saved.addAction(ok)
         
-        present(saved, animated: true, completion: nil)
+        present(saved, animated: true, completion: nil)*/
         
         
     }
@@ -152,7 +161,7 @@ class QRGenViewController: UIViewController, MFMailComposeViewControllerDelegate
 }
 
 
-extension UIImage {
+/*extension UIImage {
     func resizeWith(percentage: CGFloat) -> UIImage? {
         let imageView = UIImageView(frame: CGRect(origin: .zero, size: CGSize(width: size.width * percentage, height: size.height * percentage)))
         imageView.contentMode = .scaleAspectFit
@@ -175,4 +184,4 @@ extension UIImage {
         UIGraphicsEndImageContext()
         return result
     }
-}
+}*/

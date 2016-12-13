@@ -225,6 +225,64 @@ class MyPlaceTableViewController: UITableViewController, UISearchBarDelegate {
         
         self.tableView.reloadData()
     }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let name: String = (SActive && !filtered.isEmpty) ? filtered[indexPath.row].item! as String : mas[indexPath.row].item! as String
+        
+        //let number: String = (SActive && !filtered.isEmpty) ? filtered[indexPath.row].number! as String : mas[indexPath.row].number! as String
+        
+        let descr = (SActive && !filtered.isEmpty) ? filtered[indexPath.row].info! as String : mas[indexPath.row].info! as String
+        
+        let main : String = "\n" + "Наименование:  " + name +  "\n\n" + "Описание:  " + descr
+        
+        let info = UIAlertController(title: " Информация о товаре", message: main, preferredStyle: .alert)
+        
+        let ok = UIAlertAction(title: "Спасибо!", style: .default, handler: nil)
+        
+        info.addAction(ok)
+        
+        present(info, animated: true, completion: nil)
+    }
+    
+    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        
+        let shareButt = UITableViewRowAction(style: .normal, title: "Share") {action, index in
+            
+            let qrCode : String = (self.SActive && !self.filtered.isEmpty) ? self.filtered[indexPath.row].qr! as String : self.mas[indexPath.row].qr! as String
+            
+            //print ("lol: \(qrCode)")
+            
+            var image: UIImage = self.generateQRCode(from: qrCode)!
+            
+            image = image.resizeWith(width: 1000)!
+            
+            let activityViewController = UIActivityViewController(activityItems: [image], applicationActivities: nil)
+            activityViewController.popoverPresentationController?.sourceView = self.view
+            
+            self.present(activityViewController, animated: true, completion: nil)
+            
+        }
+        
+        shareButt.backgroundColor = UIColor.blue
+        
+        return [shareButt]
+    }
+    
+    func generateQRCode(from string: String) -> UIImage? {
+        let data = string.data(using: String.Encoding.ascii)
+        
+        if let filter = CIFilter(name: "CIQRCodeGenerator") {
+            filter.setValue(data, forKey: "inputMessage")
+            let transform = CGAffineTransform(scaleX: 100, y: 100)
+            
+            if let output = filter.outputImage?.applying(transform) {
+                return UIImage(ciImage: output)
+            }
+        }
+        
+        return nil
+    }
  
 
     /*
@@ -266,7 +324,7 @@ class MyPlaceTableViewController: UITableViewController, UISearchBarDelegate {
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    /*override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
         
@@ -290,7 +348,7 @@ class MyPlaceTableViewController: UITableViewController, UISearchBarDelegate {
         }
         
         
-    }
+    }*/
  
 
 }

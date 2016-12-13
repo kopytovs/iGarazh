@@ -16,9 +16,7 @@
 		939921181DA4DF800043B058 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 939921161DA4DF800043B058 /* Main.storyboard */; };
 		9399211D1DA4DF800043B058 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9399211B1DA4DF800043B058 /* LaunchScreen.storyboard */; };
 		939921271DA4E33D0043B058 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 939921261DA4E33D0043B058 /* Assets.xcassets */; };
-		93BB9E4F1DE59E9F00CD5C5C /* QRGenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93BB9E4E1DE59E9F00CD5C5C /* QRGenViewController.swift */; };
 		93D14DF71DFEFCD900E632AE /* ScafsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D14DF61DFEFCD900E632AE /* ScafsTableViewController.swift */; };
-		93DD17571DF7FCBE00574ED3 /* QRDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93DD17561DF7FCBE00574ED3 /* QRDescription.swift */; };
 		93E4A2C21DDF588C00EDAB54 /* MyPlaceTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93E4A2C11DDF588C00EDAB54 /* MyPlaceTableViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -34,9 +32,7 @@
 		9399211C1DA4DF800043B058 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9399211E1DA4DF800043B058 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		939921261DA4E33D0043B058 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		93BB9E4E1DE59E9F00CD5C5C /* QRGenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRGenViewController.swift; sourceTree = "<group>"; };
 		93D14DF61DFEFCD900E632AE /* ScafsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScafsTableViewController.swift; sourceTree = "<group>"; };
-		93DD17561DF7FCBE00574ED3 /* QRDescription.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRDescription.swift; sourceTree = "<group>"; };
 		93E4A2C11DDF588C00EDAB54 /* MyPlaceTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyPlaceTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -73,12 +69,10 @@
 				939921101DA4DF800043B058 /* AppDelegate.swift */,
 				939921121DA4DF800043B058 /* FirstViewController.swift */,
 				939921141DA4DF800043B058 /* SecondViewController.swift */,
-				93BB9E4E1DE59E9F00CD5C5C /* QRGenViewController.swift */,
 				933011E41DDB726A005C2A71 /* SettingsViewController.swift */,
 				933011E61DDB8F4E005C2A71 /* TableViewController.swift */,
-				93E4A2C11DDF588C00EDAB54 /* MyPlaceTableViewController.swift */,
-				93DD17561DF7FCBE00574ED3 /* QRDescription.swift */,
 				93D14DF61DFEFCD900E632AE /* ScafsTableViewController.swift */,
+				93E4A2C11DDF588C00EDAB54 /* MyPlaceTableViewController.swift */,
 				939921161DA4DF800043B058 /* Main.storyboard */,
 				939921261DA4E33D0043B058 /* Assets.xcassets */,
 				9399211B1DA4DF800043B058 /* LaunchScreen.storyboard */,
@@ -161,7 +155,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				93BB9E4F1DE59E9F00CD5C5C /* QRGenViewController.swift in Sources */,
 				939921151DA4DF800043B058 /* SecondViewController.swift in Sources */,
 				93D14DF71DFEFCD900E632AE /* ScafsTableViewController.swift in Sources */,
 				939921111DA4DF800043B058 /* AppDelegate.swift in Sources */,
@@ -169,7 +162,6 @@
 				93E4A2C21DDF588C00EDAB54 /* MyPlaceTableViewController.swift in Sources */,
 				933011E71DDB8F4E005C2A71 /* TableViewController.swift in Sources */,
 				939921131DA4DF800043B058 /* FirstViewController.swift in Sources */,
-				93DD17571DF7FCBE00574ED3 /* QRDescription.swift in Sources */,
 				933011E31DDB56A5005C2A71 /* iGarazh.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
