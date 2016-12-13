@@ -8,14 +8,21 @@
 
 import UIKit
 
-class ScafsTableViewController: UITableViewController {
+class ScafsTableViewController: UITableViewController, UISearchBarDelegate {
     
     var Tabs = [Scafs]()
     
     var scafs = [Scafs]()
     
     var load = true
+    
+    var filtered = [Scafs]()
+    
+    var SActive: Bool = false
+    
+    var temp : String = ""
 
+    @IBOutlet weak var Sbar: UISearchBar!
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -23,7 +30,14 @@ class ScafsTableViewController: UITableViewController {
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        
+        temp = Sbar.text!
+        
+        Sbar.delegate = self
+        
+        tableView.delegate = self
+        tableView.dataSource = self
         
         self.view.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "backgr"))
     }
@@ -34,6 +48,9 @@ class ScafsTableViewController: UITableViewController {
     }
 
     override func viewWillAppear(_ animated: Bool) {
+        
+        Sbar.showsCancelButton = false
+        
         if (load){
             getData()
             tableView.reloadData()
@@ -76,7 +93,7 @@ class ScafsTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return scafs.count
+        return (SActive) ? filtered.count : scafs.count
     }
 
     
@@ -85,7 +102,7 @@ class ScafsTableViewController: UITableViewController {
 
         // Configure the cell...
         
-        cell.textLabel?.text = scafs[indexPath.row].name! as String
+        cell.textLabel?.text = (SActive && !filtered.isEmpty) ? filtered[indexPath.row].name! as String : scafs[indexPath.row].name! as String
 
         return cell
     }
@@ -94,10 +111,59 @@ class ScafsTableViewController: UITableViewController {
         
         cell.backgroundColor = .clear
         
-        //cell.alpha = 0
+        cell.alpha = 0
         
-        UIView.animate(withDuration: 1.0, animations: {cell.alpha = 1})
+        UIView.animate(withDuration: 0.5, animations: {cell.alpha = 1})
         
+    }
+    
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        //self.navigationItem.leftBarButtonItem?.isEnabled = false
+        //self.navigationItem.rightBarButtonItem?.isEnabled = false
+        searchBar.showsCancelButton = true
+        SActive = true
+    }
+    
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        //self.navigationItem.leftBarButtonItem?.isEnabled = true
+        SActive = false
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.text = temp
+        searchBar.showsCancelButton = false
+        //self.navigationItem.leftBarButtonItem?.isEnabled = true
+        //self.navigationItem.rightBarButtonItem?.isEnabled = true
+        self.view.endEditing(true)
+        SActive = false
+        tableView.reloadData()
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        self.view.endEditing(true)
+        //self.navigationItem.leftBarButtonItem?.isEnabled = true
+        searchBar.showsCancelButton = true
+        SActive = true
+    }
+    
+    
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        
+        filtered = scafs.filter({ (text) -> Bool in
+            let tmp: String = text.name! as String
+            let range = tmp.range(of: searchText, options: String.CompareOptions.caseInsensitive)
+            //let range = tmp.rangeO(searchText, options: String.CompareOptions.CaseInsensitive)
+            return range != nil
+        })
+        
+        if(filtered.isEmpty){
+            SActive = false;
+        } else {
+            SActive = true;
+        }
+        
+        self.tableView.reloadData()
     }
 
     /*
@@ -144,7 +210,7 @@ class ScafsTableViewController: UITableViewController {
         // Pass the selected object to the new view controller.
         if let indexPath = tableView.indexPathForSelectedRow {
             let destinationController = segue.destination as! MyPlaceTableViewController
-            destinationController.scaf = scafs[indexPath.row].id!
+            destinationController.scaf = (SActive && !filtered.isEmpty) ? filtered[indexPath.row].id! as String : scafs[indexPath.row].id! as String
         }
     }
  

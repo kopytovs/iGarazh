@@ -102,6 +102,11 @@ class SecondViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
         if metadataObj.stringValue != nil {
             //infoLabel.text = metadataObj.stringValue
             name = metadataObj.stringValue
+            
+            AudioServicesPlayAlertSound(1050)
+            
+            //AudioServicesPlaySystemSound(1100)
+            
             performSegue(withIdentifier: "TrueSegue", sender: self)
             
             captureSession?.stopRunning()

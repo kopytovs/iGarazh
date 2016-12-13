@@ -64,6 +64,7 @@ class MyPlaceTableViewController: UITableViewController, UISearchBarDelegate {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        
         let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         do {
             defmas = try context.fetch(Place.fetchRequest())
@@ -116,6 +117,8 @@ class MyPlaceTableViewController: UITableViewController, UISearchBarDelegate {
             }
             }
             
+            self.navigationItem.title = defmas[0].number
+            
         } else{
             
             let alertC = UIAlertController(title: "Ошибка!", message: "Не найден шкаф!!!", preferredStyle: .alert)
@@ -138,12 +141,12 @@ class MyPlaceTableViewController: UITableViewController, UISearchBarDelegate {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        if mas.isEmpty {
-            return 0
-        } else{
+        //if mas.isEmpty {
+         //   return 0
+        //} else{
             //print (mas.count)
-            return mas.count
-        }
+        return (SActive) ? filtered.count : mas.count
+        //}
     }
 
     
@@ -170,8 +173,57 @@ class MyPlaceTableViewController: UITableViewController, UISearchBarDelegate {
         
         cell.alpha = 0
         
-        UIView.animate(withDuration: 1.0, animations: {cell.alpha = 1})
+        UIView.animate(withDuration: 0.5, animations: {cell.alpha = 1})
         
+    }
+    
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        //self.navigationItem.leftBarButtonItem?.isEnabled = false
+        //self.navigationItem.rightBarButtonItem?.isEnabled = false
+        searchBar.showsCancelButton = true
+        SActive = true
+    }
+    
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        //self.navigationItem.leftBarButtonItem?.isEnabled = true
+        SActive = false
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.text = temp
+        searchBar.showsCancelButton = false
+        //self.navigationItem.leftBarButtonItem?.isEnabled = true
+        //self.navigationItem.rightBarButtonItem?.isEnabled = true
+        self.view.endEditing(true)
+        SActive = false
+        tableView.reloadData()
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        self.view.endEditing(true)
+        //self.navigationItem.leftBarButtonItem?.isEnabled = true
+        searchBar.showsCancelButton = true
+        SActive = true
+    }
+    
+    
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        
+        filtered = mas.filter({ (text) -> Bool in
+            let tmp: String = text.item! as String
+            let range = tmp.range(of: searchText, options: String.CompareOptions.caseInsensitive)
+            //let range = tmp.rangeO(searchText, options: String.CompareOptions.CaseInsensitive)
+            return range != nil
+        })
+        
+        if(filtered.isEmpty){
+            SActive = false;
+        } else {
+            SActive = true;
+        }
+        
+        self.tableView.reloadData()
     }
  
 
@@ -231,7 +283,7 @@ class MyPlaceTableViewController: UITableViewController, UISearchBarDelegate {
             //print ("ololo:   |\(destinationController.item.text)|")
             //print ("ololo:   |\(destinationController.scaf.text)|")
             //print ("ololo:   |\(destinationController.descript.text)|")
-            print ("The end is near!")
+            //print ("The end is near!")
             //destinationController.name = mas
             //}
             

@@ -559,7 +559,7 @@ class TableViewController: UITableViewController, UISearchBarDelegate {
         
         cell.alpha = 0
         
-        UIView.animate(withDuration: 1.0, animations: {cell.alpha = 1})
+        UIView.animate(withDuration: 0.5, animations: {cell.alpha = 1})
         
     }
     
