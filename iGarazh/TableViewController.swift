@@ -613,6 +613,8 @@ class TableViewController: UITableViewController, UISearchBarDelegate {
         
         info.addAction(ok)
         
+        self.tableView.cellForRow(at: indexPath)?.isSelected = false
+        
         present(info, animated: true, completion: nil)
     }
     

@@ -117,7 +117,7 @@ class MyPlaceTableViewController: UITableViewController, UISearchBarDelegate {
             }
             }
             
-            self.navigationItem.title = defmas[0].number
+            self.navigationItem.title = mas[0].number
             
         } else{
             
@@ -241,6 +241,8 @@ class MyPlaceTableViewController: UITableViewController, UISearchBarDelegate {
         let ok = UIAlertAction(title: "Спасибо!", style: .default, handler: nil)
         
         info.addAction(ok)
+        
+        self.tableView.cellForRow(at: indexPath)?.isSelected = false
         
         present(info, animated: true, completion: nil)
     }

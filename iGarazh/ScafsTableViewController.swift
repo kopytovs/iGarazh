@@ -95,6 +95,10 @@ class ScafsTableViewController: UITableViewController, UISearchBarDelegate {
         // #warning Incomplete implementation, return the number of rows
         return (SActive) ? filtered.count : scafs.count
     }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.tableView.cellForRow(at: indexPath)?.isSelected = false
+    }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -103,6 +107,10 @@ class ScafsTableViewController: UITableViewController, UISearchBarDelegate {
         // Configure the cell...
         
         cell.textLabel?.text = (SActive && !filtered.isEmpty) ? filtered[indexPath.row].name! as String : scafs[indexPath.row].name! as String
+        
+        let items : String = (SActive && !filtered.isEmpty) ? String(filtered[indexPath.row].items) : String(scafs[indexPath.row].items)
+        
+        cell.detailTextLabel?.text = "Всего:  " + "\(items)"
 
         return cell
     }
@@ -164,6 +172,45 @@ class ScafsTableViewController: UITableViewController, UISearchBarDelegate {
         }
         
         self.tableView.reloadData()
+    }
+    
+    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        
+        let shareButt = UITableViewRowAction(style: .normal, title: "Share") {action, index in
+        
+            let qrCode : String = (self.SActive && !self.filtered.isEmpty) ? self.filtered[indexPath.row].id! as String : self.scafs[indexPath.row].id! as String
+            
+            //print ("lol: \(qrCode)")
+            
+            var image: UIImage = self.generateQRCode(from: qrCode)!
+            
+            image = image.resizeWith(width: 1000)!
+            
+            let activityViewController = UIActivityViewController(activityItems: [image], applicationActivities: nil)
+            activityViewController.popoverPresentationController?.sourceView = self.view
+            
+            self.present(activityViewController, animated: true, completion: nil)
+            
+        }
+        
+        shareButt.backgroundColor = UIColor.blue
+        
+        return [shareButt]
+    }
+    
+    func generateQRCode(from string: String) -> UIImage? {
+        let data = string.data(using: String.Encoding.ascii)
+        
+        if let filter = CIFilter(name: "CIQRCodeGenerator") {
+            filter.setValue(data, forKey: "inputMessage")
+            let transform = CGAffineTransform(scaleX: 100, y: 100)
+            
+            if let output = filter.outputImage?.applying(transform) {
+                return UIImage(ciImage: output)
+            }
+        }
+        
+        return nil
     }
 
     /*
