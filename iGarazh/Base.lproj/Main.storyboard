@@ -101,7 +101,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UIJ-xN-6oR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2941" y="0.0"/>
+            <point key="canvasLocation" x="2940" y="-446"/>
         </scene>
         <!--Шкафы-->
         <scene sceneID="5zF-wq-LWI">
@@ -159,7 +159,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oNl-3Y-fRC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2941" y="1099"/>
+            <point key="canvasLocation" x="2940" y="362"/>
         </scene>
         <!--Предметы в шкафу-->
         <scene sceneID="Zrd-OQ-PuC">
@@ -213,7 +213,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bTw-mV-IVG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3824" y="558"/>
+            <point key="canvasLocation" x="4054" y="26"/>
         </scene>
         <!--Settings View Controller-->
         <scene sceneID="Ykn-hy-CFF">
