@@ -300,7 +300,6 @@ class TableViewController: UITableViewController, UISearchBarDelegate {
         filtered = mas.filter({ (text) -> Bool in
             let tmp: String = text.item! as String
             let range = tmp.range(of: searchText, options: String.CompareOptions.caseInsensitive)
-            //let range = tmp.rangeO(searchText, options: String.CompareOptions.CaseInsensitive)
             return range != nil
         })
         
